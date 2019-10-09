@@ -10,6 +10,13 @@ export default class Post extends Component{
         this.handleAddPost = this.handleAddPost.bind(this)
         this.handlePostBoard = this.handlePostBoard.bind(this)
     }
+    componentDidMount(){
+        axios.get("http://localhost:2222/api/data").then(response =>{
+            this.setState({
+                postBoard: response.data.posted
+            })
+        })
+    }
     handleAddPost(value){
         this.setState({
             newPost:value

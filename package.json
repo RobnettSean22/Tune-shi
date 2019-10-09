@@ -1,6 +1,8 @@
 {
   "name": "tune-ish",
   "version": "0.1.0",
+  "main": "server/server.js",
+  "proxy":"http://localhost:4444/",
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
