@@ -23,10 +23,11 @@ app.get('/api/profile/:tag' , (req, res, next) => {
         res.status(404).send('try again bruh')
     }
 })
-//APP.POST FOT THE POTS***************************************
+//APP.POST FOT THE POSTS***************************************
+
 app.post('/api/add_post/:tag' , (req, res, next) => {
     const {tag} = req.params //check it it maybe it is body
-    const {index} = profileData.findIndex((element) => {
+    const index = profileData.findIndex((element) => {
         return element.tag === parseInt(tag)
     })
     if(index !== -1){
@@ -36,9 +37,11 @@ app.post('/api/add_post/:tag' , (req, res, next) => {
             num,
             newPosting,
         }
+        console.log(newPost)
         num++
         profileData[index].posted.push(newPost)
-        res.status(200).send(profileData[index])
+
+        res.status(200).send(profileData)
         
     }else{
         res.status(404).send('keep trying')
@@ -47,6 +50,7 @@ app.post('/api/add_post/:tag' , (req, res, next) => {
 })
 
 //APP.POST FOR THE PROFILE************************************
+
 app.post('/api/add_profile', (req, res, next) => {
     const {firstName, lastName, posted} = req.body
     const newProfile = {
@@ -54,16 +58,42 @@ app.post('/api/add_profile', (req, res, next) => {
         tag,
         firstName,
         lastName,
-        posted
+        posted,
     }
     tag++;
     profileData.push(newProfile)
 
     res.status(200).send(profileData)
 })
+//APP PUT FOR POSTS**********************************************
+app.put('/api/update_post/:tag/:num', (req, res, next) => {
+    const {tag , num} = req.params
+    const {editPost} = req.body
+    const index = profileData.findIndex((element => {
+        return element.tag === parseInt(tag)
+    }))
+    if(index !== -1){
+        const postIndex = profileData[index].posted.findIndex((element => {
+            return element.num === parseInt(num)
+            
+        }))
+        if(postIndex !== -1){
+           console.log(profileData[index].posted[postIndex].newPosting = editPost || profileData[index].posted[postIndex].newPosting)
+            res.status(200).send(profileData)
+           
+        }else{
+            res.status(404).send('issue in inner if statement')
+        }
+    }else{
+        res.status(404).send('issue in outer if statement')
+    }
+})
+
+//APP PUT FOR PROFILE******************************************
+
 app.put('/api/update_profile/:tag', (req, res, next) => {
     const {tag} = req.params
-    const {newFirstName, newLastName} = req.query
+    const {newFirstName, newLastName} = req.body
     const index = profileData.findIndex((element => {
         return element.tag === parseInt(tag)
     }))
@@ -78,11 +108,30 @@ app.put('/api/update_profile/:tag', (req, res, next) => {
 
         res.status(404).send('did not update correctly')
 
-    }
-    
-    
+    }   
 
 })
+//APP DELETE FOR POSTS *************************************
+app.delete('/api/delete_post/:tag/:num', (req, res,  next) => {
+    const {tag, num} = req.params
+    const index = profileData.findIndex((element => {
+        return element.tag === parseInt(tag)
+    }))
+    if(index !== -1){
+        const postIndex = profileData[index].posted.findIndex((element => {
+            return element.num === parseInt(num)
+        }))
+        if(postIndex !== -1){
+            profileData[index].posted.splice(postIndex, 1)
+            res.status(200).send(profileData)
+        }else{
+            res.status(404).send('still there')
+        }
+        
+    }
+})
+
+//APP DELETE FOR PROFILE*************************************
 app.delete('/api/delete_profile/:tag', (req, res, next) => {
     const {tag} = req.params
     const index = profileData.findIndex((element => {
