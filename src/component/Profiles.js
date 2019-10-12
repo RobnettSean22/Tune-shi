@@ -8,7 +8,7 @@ export default class Profile extends Component{
     constructor(props){
         super(props)
         this.state = {
-            select:{},
+          
             allProfiles:[]
 
         }
@@ -21,6 +21,7 @@ export default class Profile extends Component{
         axios.get('/api/all_profiles').then(response => {
             this.setState({
                 allProfiles: response.data,
+                
             })
         })
         
@@ -31,19 +32,30 @@ export default class Profile extends Component{
       }
       axios.post(`/api/add_post/${tag}`, newPost).then(response => {
           this.setState({
-              allProfiles: response.data
+              allProfiles: response.data,
+             
           })
       })
+
+  }
+  deletePost(tag, num){
+    axios.delete(`/api/delete_post/${tag}/${num}`).then(response => {
+      this.setState({
+        allProfiles: response.data
+      })
+    })
 
   }
 
     render(){
       const {allProfiles} = this.state
       const mappedProfiles = allProfiles.map((profiles, profileIndex) => {
-        const mappedPosts = allProfiles[profileIndex].posted.map((element ) =>{
+        const mappedPosts = allProfiles[profileIndex].posted.map((posts ) =>{
           return (
-            <div key = {element.num}>
-              <div>{element.newPosting}</div>
+            <div key = {posts.num}>
+              <div className = 'posts'>{posts.newPosting}</div>
+              <button onClick={(e) => this.deletePost(profiles.tag, posts.num)}>Delete</button>
+              <button></button>
             </div>
           )
         })
