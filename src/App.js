@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
 import './App.css';
-import Post from './component/Post'
+import Profiles from './component/Profiles'
 
- class App extends Component{
-   
-   render(){
+
+
+
+class App extends Component {
+  constructor(props) {
+    super(props)
 
    
-  return (
-    <div className="profile">
-      <Post/>
-    </div>
- 
-    );
+  }
+
+  render() {
+    return (
+      <div>
+        <Profiles/>
+        
+      </div>
+    )
   }
 }
 
+export default App
 
-export default App;
+
+
+

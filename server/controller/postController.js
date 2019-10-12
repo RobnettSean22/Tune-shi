@@ -3,6 +3,8 @@ let tag = 3
 let num = 1
 module.exports={
     addPost:(req, res, next) => {
+        console.log("REQ.PARAMS =", req.params)
+        console.log("REQ.BODY =", req.body)
         const {tag} = req.params //check it it maybe it is body
         const index = profileData.findIndex((element) => {
             return element.tag === parseInt(tag)
