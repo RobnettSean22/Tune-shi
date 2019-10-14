@@ -8,14 +8,16 @@ export default class Header extends Component {
         return (
             <div>
              <header>
-                <div className = 'left'>Logo</div>
-                <div className = 'right'>
+                <nav>
+                    <div className = 'left'>Tune Shi</div>
+                    <div className = 'right'>
                     <ul>
-                        <li>my shi</li>
-                        <li>find shi</li>
-                        <li>dope shi</li>
+                        <li><a href="http:https://www.facebook.com/sean.robnett1">my SHI</a></li>
+                        <li><a href="http://">find SHI</a></li>
+                        <li><a href="http://">dope SHI</a></li>
                     </ul>
-                </div>
+                    </div>
+                </nav>
              </header>
             </div>
         )

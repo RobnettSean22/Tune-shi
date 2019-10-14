@@ -1,0 +1,8 @@
+.names{
+    width: 75%;
+    height: 40%;
+    margin: 0 auto;
+    display:flex;
+    justify-content: space-evenly;
+    
+}
