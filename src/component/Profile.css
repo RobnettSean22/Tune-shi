@@ -36,6 +36,9 @@
     height: 100%;
     margin:0 auto;
     background: hotpink;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
  .messagecontainer{
      width: 40%;
@@ -44,7 +47,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
-     
+
  }
 
 .left{
@@ -52,4 +55,8 @@
     margin: 0 0 0 50px;
     color: white;
     
+}
+
+p{
+    color:white;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Profile.css'
 import Post from './Post'
+import Modal from 'react'
 
 export default class Profile extends Component {
     constructor(props) {
@@ -8,8 +9,22 @@ export default class Profile extends Component {
 
         this.state = {
             editPost:this.props.iPost ,
-            newMessage:''
+            newMessage:'',
+            modalIsOpen:false
+
         }
+    }
+    openModal(){
+        this.setState({
+            modalIsOpen:true
+        })
+    }
+    afterOpenModal(){
+        this.subtitl.style.color = '#f00'
+    }
+
+    closeModal(){
+        
     }
 
     render() {
@@ -45,13 +60,13 @@ export default class Profile extends Component {
                     <div className = 'names'>{this.props.lastName}</div>
                 </div>
                 <div className = 'container'>    
-                    
+                <div className = 'messagecontainer'>
+                <p className = 'messages'>{mappedPosts}</p>
+                </div>
                    
                     <div className = 'events'/><div>Events</div>
 
-                    <div className = 'messagecontainer'>
-                    <p className = 'messages'>{mappedPosts}</p>
-                    </div>
+                    
                 </div>    
             </div>
         )
