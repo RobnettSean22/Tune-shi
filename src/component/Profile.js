@@ -36,12 +36,23 @@ export default class Profile extends Component {
         })
        
         return (
-            <div className = 'names'>
-                <div >{this.props.firstName}</div>
-                <div>{this.props.lastName}</div>
             <div>
-                <div>{mappedPosts}</div>
-            </div>    
+                <div className = 'namestyle'>
+                    <div className = 'names'>{this.props.firstName}</div>
+                    <div className = 'profilepic'>
+                    <img src="" alt=""/>
+                    </div>
+                    <div className = 'names'>{this.props.lastName}</div>
+                </div>
+                <div className = 'container'>    
+                    
+                   
+                    <div className = 'events'/><div>Events</div>
+
+                    <div className = 'messagecontainer'>
+                    <p className = 'messages'>{mappedPosts}</p>
+                    </div>
+                </div>    
             </div>
         )
     }

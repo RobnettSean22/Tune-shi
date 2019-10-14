@@ -1,6 +1,6 @@
 header{
     width: 100%;
-    height:
+    
   
    
 }
@@ -36,19 +36,13 @@ li a{
     display: block;
     color: white;
     text-align: center;
-    margin: 3px;
+    margin: 14px;
     padding: 14px, 16px;
     text-decoration: none;
 }
 
 li a:hover {
+    width:100%;
     background: #111;
 }
 
-
-.left{
-    font-size: 20px;
-    margin: 0 0 0 50px;
-    color: white;
-    
-}
