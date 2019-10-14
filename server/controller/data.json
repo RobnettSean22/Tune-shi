@@ -3,12 +3,12 @@
         "tag":1,
         "firstName":"Sean",
         "lastName":"Robnett",
-        "posted":[{"num":0, "newPosting":""}]
+        "posted":[]
     },
     {
         "tag":2,
         "firstName":"Shant",
         "lastName":"Cunningham",
-        "posted":[{"num":0, "newPosting":""}]
+        "posted":[]
     }
 ]

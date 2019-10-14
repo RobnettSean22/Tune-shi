@@ -1,6 +1,6 @@
 const profileData = require('./data.json')
 let tag = 3
-let num = 1
+let num = 0
 module.exports={
     addPost:(req, res, next) => {
         console.log("REQ.PARAMS =", req.params)
