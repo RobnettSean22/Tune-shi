@@ -3,6 +3,17 @@ import './Profile.css'
 import Post from './Post'
 import Modal from 'react'
 
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  }; 
+
 export default class Profile extends Component {
     constructor(props) {
         super(props)
@@ -13,6 +24,7 @@ export default class Profile extends Component {
             modalIsOpen:false
 
         }
+        this.openModal = this.openModal.bind(this)
     }
     openModal(){
         this.setState({
@@ -24,7 +36,9 @@ export default class Profile extends Component {
     }
 
     closeModal(){
-        
+        this.setState({
+            modalIsOpen: false
+        })
     }
 
     render() {
@@ -35,6 +49,7 @@ export default class Profile extends Component {
                    <Post iPost = {post.newPosting}/>
                 
                 <input value ={this.state.newMessage} placeholder={post.newPosting} onChange={(e) => this.setState({newMessage:e.target.value})}/>
+                
                 <button onClick={(e) => {
                     this.props.updateFunc(
                         this.props.pId,
@@ -42,6 +57,8 @@ export default class Profile extends Component {
                         this.state.newMessage,
                     );
                     this.setState({ newMessage: "" })}}>update</button>
+                    <button onClick = {this.openModal}>Edit</button>
+
                 <button className = 'deletebut' onClick={(e) =>
                      this.props.deleteFunc(
                          this.props.pId, post.num )}>Delete</button>
@@ -61,7 +78,7 @@ export default class Profile extends Component {
                 </div>
                 <div className = 'container'>    
                 <div className = 'messagecontainer'>
-                <p className = 'messages'>{mappedPosts}</p>
+                <div className = 'messages'>{mappedPosts}</div>
                 </div>
                    
                     <div className = 'events'/><div>Events</div>
