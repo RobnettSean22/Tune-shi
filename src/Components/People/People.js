@@ -21,13 +21,14 @@ class People extends Component {
     getAllProfiles(){
         axios.get(`/api/all_profiles`).then(response => {
             this.setState({
-                allPeople: response.data, 
+                allPeople: response.data
             })
         })
     }
     
     render() {
         const {allPeople} = this.state
+        console.log(this.props.match.params)
          const mapPeople = allPeople.map(people => {
             return (
 

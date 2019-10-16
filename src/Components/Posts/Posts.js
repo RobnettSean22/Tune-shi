@@ -10,7 +10,7 @@ class Posts extends Component {
     }
 
     render() {
-        const mapMessage = this.props.message.map(posts => {
+        const mapMessage = this.props.message ? this.props.message.map(posts => {
             return (
                 <div key = {posts.num}>
                     <div>
@@ -18,7 +18,7 @@ class Posts extends Component {
                     </div>
                 </div>
             )
-        })
+        }) : null
         return (
             <div>
                 {mapMessage}
