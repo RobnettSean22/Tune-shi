@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import Posts from '../Posts/Posts'
 import axios from 'axios'
+import './Profile.css'
 
 
 class Profile extends Component {
     constructor(props){
         super(props)
         this.state = {
-            profile: null
+            profile: null,
+            newPosting:''
+
         }
     }
      
@@ -24,24 +27,54 @@ class Profile extends Component {
         })
     }
 
+    
+    addPost(tag, newPosting){
+        const newPost = {
+            newPosting:newPosting
+        }
+     
+        
+        axios.post(`/api/add_post/${tag}` , newPost).then(response => {
+            this.setState({
+                profile:response.data
+            })
+        })
+    }
+
     render() {
-        console.log(this.props.match.params.tag);
+       
         const {profile} = this.state
+        let {newPosting} = this.state
+    
         
                
-      
-        //post tage will be below the lastname as a props
+      //put the post div in a container with the info and events as well
+        //post tag will be below the lastname as a props
         return (
-            <div>
+        <div>
             <div key={profile && profile.tag}>
-            <div> {profile && profile.tag}</div>
-            <div>{profile && profile.firstName}</div>
-            <div>{profile && profile.lastName}</div>
-             {profile && <Posts 
-            messages = {profile.posted}
-             />}
-        </div>
+                <div>
+                    <div className= 'cover-photo-container'>COVER PHOTO</div>
+                    <div className = 'picnname-container'>
+                        <div className= 'name1st'>{profile && profile.firstName}</div>
+                        <div className = 'profile-pic'>INSERT PROFILE PIC</div>
+                        <div className = ' name2nd'>{profile && profile.lastName}</div>
+                    </div>
+                    <div>
+                        <div className = 'posts-container'>
+                            <div>{profile && <Posts 
+                                messages = {profile.posted}
+                                />}
+                            </div>
+                        </div>
+                        
+                        <input  onChange ={(e) => this.setState({newPosting:e.target.value})}/>
+                        <button onClick = {(e) => this.addPost(profile.tag, newPosting)}></button>
+                    </div>
+                </div>
             </div>
+            
+        </div>
         )
     }
 }

@@ -33,10 +33,11 @@ class People extends Component {
             return (
 
                 <div key= {people.tag}>
-                
+                    
                     <h1>{people.firstName}</h1>
                     <h1>{people.lastName}</h1>
                     <Link to = {`/profile/${people.tag}`}>{people.firstName} SHI</Link>
+
                 </div>
                 
             )

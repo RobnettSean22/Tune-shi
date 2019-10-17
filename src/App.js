@@ -15,9 +15,10 @@ class App extends Component {
     return (
       <div>
         <header>
-        <Link to = '/'>Home</Link>
-        <Link to = '/people'>People</Link>
-        <Link to = '/Profile'>Profile</Link>
+        <div className='nav'>
+          <Link to = '/'>tuneSHI</Link>
+          <Link to = '/people'>People</Link>
+        </div>
         </header>
         <Switch>
           <Route exact path = '/' component ={Home} />

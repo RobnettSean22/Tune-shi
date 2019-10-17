@@ -21,7 +21,9 @@ class Posts extends Component {
         }) : null
         return (
             <div>
+            
                 {mapMessage}
+                
             </div>
         )
     }
