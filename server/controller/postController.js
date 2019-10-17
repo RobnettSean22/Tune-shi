@@ -19,8 +19,8 @@ module.exports={
             console.log(newPost)
             num++
             profileData[index].posted.push(newPost)
-    
-            res.status(200).send(profileData)
+            console.log(profileData)
+            res.status(200).send(profileData[index])
             
         }else{
             res.status(404).send('keep trying')

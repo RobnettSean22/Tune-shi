@@ -10,7 +10,8 @@ class Posts extends Component {
     }
 
     render() {
-        const mapMessage = this.props.message ? this.props.message.map(posts => {
+        console.log(this.props)
+        const mapMessage = this.props.messages ? this.props.messages.map(posts => {
             return (
                 <div key = {posts.num}>
                     <div>

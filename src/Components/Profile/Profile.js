@@ -10,7 +10,6 @@ class Profile extends Component {
         this.state = {
             profile: null,
             newPosting:''
-
         }
     }
      
@@ -46,7 +45,7 @@ class Profile extends Component {
         const {profile} = this.state
         let {newPosting} = this.state
     
-        
+        console.log(this.props.match.params)
                
       //put the post div in a container with the info and events as well
         //post tag will be below the lastname as a props
