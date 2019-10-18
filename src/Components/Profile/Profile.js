@@ -10,7 +10,10 @@ class Profile extends Component {
         this.state = {
             profile: null,
             newPosting:''
+           
         }
+        this.deletePost = this.deletePost.bind(this)
+        this.updatePost = this.updatePost.bind(this)
     }
      
     componentDidMount(){
@@ -29,13 +32,33 @@ class Profile extends Component {
     
     addPost(tag, newPosting){
         const newPost = {
-            newPosting:newPosting
+            newPosting:newPosting,
         }
+        
      
         
         axios.post(`/api/add_post/${tag}` , newPost).then(response => {
             this.setState({
-                profile:response.data
+                profile:response.data,
+                newPosting:''
+                
+            })
+        })
+    }
+
+    updatePost(tag, num, editPost){
+        axios.put(`/api/update_post/${tag}/${num}`, editPost).then(response => {
+            this.setState({
+                profile: response.data
+            })
+        })
+
+    }
+    
+    deletePost(tag, num){
+        axios.delete(`/api/delete_post/${tag}/${num}`).then(respons => {
+            this.setState({
+                profile: respons.data
             })
         })
     }
@@ -63,11 +86,14 @@ class Profile extends Component {
                         <div className = 'posts-container'>
                             <div>{profile && <Posts 
                                 messages = {profile.posted}
+                                id = {profile.tag}
+                                deleteFunc ={this.deletePost}
+                                updateFunc = {this.updatePost}
                                 />}
                             </div>
                         </div>
                         
-                        <input  onChange ={(e) => this.setState({newPosting:e.target.value})}/>
+                        <input  placeholder = 'What You Got To Say' value = {newPosting} onChange ={(e) => this.setState({newPosting:e.target.value, })}/>
                         <button onClick = {(e) => this.addPost(profile.tag, newPosting)}></button>
                     </div>
                 </div>

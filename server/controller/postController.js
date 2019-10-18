@@ -40,7 +40,7 @@ module.exports={
             }))
             if(postIndex !== -1){
                console.log(profileData[index].posted[postIndex].newPosting = editPost || profileData[index].posted[postIndex].newPosting)
-                res.status(200).send(profileData)
+                res.status(200).send(profileData[index])
                
             }else{
                 res.status(404).send('issue in inner if statement')
@@ -60,7 +60,7 @@ module.exports={
             }))
             if(postIndex !== -1){
                 profileData[index].posted.splice(postIndex, 1)
-                res.status(200).send(profileData)
+                res.status(200).send(profileData[index])
             }else{
                 res.status(404).send('still there')
             }

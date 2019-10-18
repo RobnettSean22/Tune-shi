@@ -3,12 +3,14 @@ import {Link} from 'react-router-dom'
 
 import axios from 'axios'
 
-class People extends Component {
+export default class People extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            allPeople: []
+            allPeople: [],
+            find:''
+
             
         }
     }
@@ -25,9 +27,16 @@ class People extends Component {
             })
         })
     }
+
+    filterPeople(value){
+        this.setState({
+            find:value
+        })
+    }
     
     render() {
         const {allPeople} = this.state
+        const {find} = this.state
         console.log(this.props.match.params)
          const mapPeople = allPeople.map(people => {
             return (
@@ -41,8 +50,9 @@ class People extends Component {
                 </div>
                 
             )
-        })
- ///posted should be put below the last name and passed as a props.       
+        })     
+       
+        
         return (
             <div>
                 {mapPeople}
@@ -51,4 +61,3 @@ class People extends Component {
     }
 }
 
-export default People
