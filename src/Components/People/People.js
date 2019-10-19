@@ -43,10 +43,10 @@ export default class People extends Component {
 
                 <div key= {people.tag}>
                     
-                    <h1>{people.firstName}</h1>
-                    <h1>{people.lastName}</h1>
-                    <Link to = {`/profile/${people.tag}`}>{people.firstName} SHI</Link>
-
+                    <div>
+                        <h1>{people.firstName} {people.lastName}</h1>
+                        <Link to = {`/profile/${people.tag}`}><button className = 'to_profile'>{people.firstName} 's SHI</button></Link>
+                    </div>
                 </div>
                 
             )
